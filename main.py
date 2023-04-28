@@ -13,8 +13,11 @@ link = 'https://www.saucedemo.com/'
 
 class TestAuthentication(unittest.TestCase):
     def setUp(self):
+        options = webdriver.ChromeOptions()
+        options.add_argument('--ignore-certificate-errors')
+        options.add_argument('--incognito')
         s = Service(ChromeDriverManager().install())
-        self.browser = webdriver.Chrome(service=s)
+        self.browser = webdriver.Chrome(service=s, options=options)
 
     def test_login(self):
         # Init
